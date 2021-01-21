@@ -14,6 +14,7 @@ interface ConfigInterface
     /**
      * EXAMPLE:
      * \Drvtr\Yard\Tools::dump( 'var/dev/%date%-dumps/%increment%-output.txt', $items, true);
+     * \Drvtr\Yard\Tools::getLogger('var/dev/sorting-log')->info('ES Query');
      */
     const DEFAULT_DEBUG_FILE_PATTERN = 'var/drvtr/%date%-dumps/%increment%-output.txt';
 }

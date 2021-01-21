@@ -43,27 +43,6 @@ class ClientPlugin
      */
     public function beforeQuery(Elasticsearch $subject, $query)
     {
-//        if (isset($query['body']['query']['bool']['must'])) {
-//            $query['body']['query']['bool']['must'][] = [
-//                'term' => [
-//                    'tx_sub_category_id' => '43'
-//                ]
-//            ];
-//        }
-
-//        if (isset($query['body']['sort'][0]['manufacturer'])) {
-//            unset($query['body']['sort'][0]);
-//            $query['body']['sort'][] = [
-//                [
-//                    'manufacturer_value' => ['order' => 'asc']
-//                ]
-//            ];
-//        }
-//        $query['body']['sort'] = [
-//            [
-//                'position_category_581' => ['order' => 'asc']
-//            ]
-//        ];
         \Drvtr\Yard\Tools::getLogger('var/dev/sorting')->info('ES Query');
         $this->dumper->dump( 'var/dev/%date%-layer-issue/%increment%-es-query.json', $query, true);
         return [$query];

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Drvtr\Yard\Setup\ExamplePatchData;
+namespace Drvtr\Yard\Scaffold\Setup\ExamplePatchData;
 
 
 use Magento\Customer\Api\CustomerMetadataInterface;
@@ -95,12 +95,6 @@ class AddCustomerAttribute implements DataPatchInterface
             null,
             'c38_skip_fraud_check'
         );
-        $eavSetup->addAttributeToSet(
-            CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
-            CustomerMetadataInterface::ATTRIBUTE_SET_ID_CUSTOMER,
-            null,
-            'c38_skip_fraud_check');
-
         $attr = $this->eavConfig->getAttribute(
             CustomerMetadataInterface::ENTITY_TYPE_CUSTOMER,
             'c38_skip_fraud_check'

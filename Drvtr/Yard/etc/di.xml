@@ -6,43 +6,14 @@
     <preference for="Drvtr\Yard\Api\Tools\LoggerPoolInterface" type="Drvtr\Yard\Tools\LoggerPool" />
     <preference for="Drvtr\Yard\Api\Tools\DumperInterface" type="Drvtr\Yard\Tools\Dumper" />
     <!-- Tools Interface Definitions END-->
-
-
-<!--    <preference for="Magento\Customer\Controller\Section\Load"-->
-<!--                type="Drvtr\Yard\Controller\Customer\Section\Load" />-->
-
     <type name="Magento\Elasticsearch6\Model\Client\Elasticsearch">
         <plugin name="Drvtr_Yard::EsClient"
                 type="Drvtr\Yard\Plugin\Elasticsearch\ClientPlugin" sortOrder="999" />
     </type>
 
-    <type name="Taxjar\SalesTax\Model\Client">
-        <plugin name="Drvtr_Yard::TaxjarClientPlugin"
-                type="Drvtr\Yard\Plugin\TaxjarClientPlugin" sortOrder="999" />
-    </type>
-
-<!--    <type name="\Magento\Elasticsearch\Model\Adapter\FieldMapper\Product\AttributeProvider">-->
-<!--        <plugin name="Drvtr_Yard::AttributeProvider"-->
-<!--                type="Drvtr\Yard\Plugin\Elasticsearch\AttributeProvider" sortOrder="999" />-->
-<!--    </type>-->
-
     <type name="Magento\Catalog\Block\Product\ListProduct">
         <plugin name="Drvtr_Yard::ListProduct"
                 type="Drvtr\Yard\Plugin\CatalogBlockProductListProductPlugin" sortOrder="999" />
-    </type>
-
-<!--    <type name="Magento\Catalog\Model\Layer">-->
-<!--        <plugin name="Drvtr_Yard::LayerPlugin" type="Drvtr\Yard\Plugin\Magento\Catalog\Model\LayerPlugin" sortOrder="10" />-->
-<!--    </type>-->
-
-<!--        <type name="Signifyd\Connect\Controller\Webhooks\Index">-->
-<!--            <plugin name="Drvtr_Yard::Signifyd_processRequest"-->
-<!--                    type="Drvtr\Yard\Plugin\Signifyd\ControllerWebhooksPlugin" sortOrder="999" />-->
-<!--        </type>-->
-
-
-    <type name="Magento\ConfigurableProduct\Helper\Data">
-        <plugin name="C38_ConfigurableProduct::removeOutOfStockSwatches" type="C38\ConfigurableProduct\Plugin\Magento\ConfigurableProduct\Helper\Data\RemoveOutOfStockSwatchesPlugin" sortOrder="10" />
     </type>
 
 </config>
