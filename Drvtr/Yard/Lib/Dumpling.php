@@ -79,7 +79,7 @@ class Dumpling
         $result = array();
 
         $result[] = str_repeat(" ", $this->level * 4) . '[';
-        if ($key{0} == "\0") {
+        if ($key[0] == "\0") {
             $keyParts = explode("\0", $key);
             $result[] = $keyParts[2] . (($keyParts[1] == '*') ? ':protected' : ':private');
         } else {
