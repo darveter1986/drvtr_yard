@@ -1,19 +1,26 @@
 <?xml version="1.0"?>
+
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <!-- Tools Interface Definitions START-->
     <preference for="Drvtr\Yard\Api\Tools\LoggerPoolInterface" type="Drvtr\Yard\Tools\LoggerPool" />
     <preference for="Drvtr\Yard\Api\Tools\DumperInterface" type="Drvtr\Yard\Tools\Dumper" />
-    <!-- Tools Interface Definitions END-->
-    <type name="Magento\Elasticsearch6\Model\Client\Elasticsearch">
-        <plugin name="Drvtr_Yard::EsClient"
-                type="Drvtr\Yard\Plugin\Elasticsearch\ClientPlugin" sortOrder="999" />
-    </type>
 
-    <type name="Magento\Catalog\Block\Product\ListProduct">
-        <plugin name="Drvtr_Yard::ListProduct"
-                type="Drvtr\Yard\Plugin\CatalogBlockProductListProductPlugin" sortOrder="999" />
+    <type name="Magento\Framework\DataObject">
+        <plugin type="Drvtr\Yard\Plugin\Magento\Framework\DataObjectPlugin"
+                name="shkoliar-debug-helper-data-object-plugin" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Framework\Model\AbstractModel">
+        <plugin type="Drvtr\Yard\Plugin\Magento\Framework\Model\AbstractModelPlugin"
+                name="shkoliar-debug-helper-abstract-model-plugin" sortOrder="1" disabled="false"/>
+    </type>
+    <!-- Tools Interface Definitions END-->
+
+
+    <type name="Magento\Elasticsearch6\Model\Client\Elasticsearch">
+        <plugin type="Drvtr\Yard\Plugin\Elasticsearch\ClientPlugin"
+                name="Drvtr_Yard::EsClient" sortOrder="999" disabled="true"/>
     </type>
 
 </config>
