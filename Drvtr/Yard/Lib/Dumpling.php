@@ -16,16 +16,19 @@ use ReflectionFunction;
 class Dumpling
 {
     // Stateful variables populated during a dump.
-    protected $stack = array();
+    protected $stack = [];
     protected $level = 0;
-    protected $result = array();
+    protected $result = [];
 
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
-        $this->options = array_merge(array(
-            'depth' => 3,
-            'ignore' => array(),
-        ), $options);
+        $this->options = array_merge(
+            [
+                'depth' => 3,
+                'ignore' => [],
+            ],
+            $options
+        );
 
         $this->depth = $this->options['depth'];
     }
@@ -51,12 +54,12 @@ class Dumpling
      *
      * @param mixed $options If a number is used, it is the maximum depth.
      */
-    public static function D($value, $options=array())
+    public static function D($value, $options = [])
     {
         if (is_numeric($options)) {
-            $options = array('depth' => $options);
+            $options = ['depth' => $options];
         } elseif (empty($options)) {
-            $options = array();
+            $options = [];
         }
         $plop = new Dumpling($options);
         return $plop->dump($value);
@@ -65,8 +68,8 @@ class Dumpling
     private function reset()
     {
         $this->level = 0;
-        $this->stack = array();
-        $this->result = array();
+        $this->stack = [];
+        $this->result = [];
     }
 
     private function isIgnoredKey($key)
@@ -76,7 +79,7 @@ class Dumpling
 
     private function formatKey($key)
     {
-        $result = array();
+        $result = [];
 
         $result[] = str_repeat(" ", $this->level * 4) . '[';
         if ($key[0] == "\0") {
@@ -111,7 +114,7 @@ class Dumpling
     {
         if ($subject === true) {
             $subject = '(bool)true';
-        } elseif ($subject ===  false) {
+        } elseif ($subject === false) {
             $subject = '(bool)false';
         } elseif ($subject === null) {
             $subject = '(null)';
@@ -124,13 +127,13 @@ class Dumpling
     {
         // Depth Guard
         if ($this->level > $this->depth) {
-            $this->result[] = "Nested ".get_class($subject)." Object\n";
+            $this->result[] = "Nested " . get_class($subject) . " Object\n";
             return;
         }
 
         $this->result[] = get_class($subject) . " Object (\n";
 
-        $subject = (array) $subject;
+        $subject = (array)$subject;
 
         foreach ($subject as $key => $val) {
             if ($this->isIgnoredKey($key) === false) {
@@ -168,9 +171,9 @@ class Dumpling
     private function inspectClosure($subject)
     {
         $reflection = new ReflectionFunction($subject);
-        $params = array_map(function($param) {
-            return ($param->isPassedByReference() ? '&$' : '$').$param->name;
+        $params = array_map(function ($param) {
+            return ($param->isPassedByReference() ? '&$' : '$') . $param->name;
         }, $reflection->getParameters());
-        $this->result[] = 'Closure ('.implode(", ", $params).') { ... }'."\n";
+        $this->result[] = 'Closure (' . implode(", ", $params) . ') { ... }' . "\n";
     }
 }

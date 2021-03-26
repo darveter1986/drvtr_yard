@@ -3,7 +3,6 @@
 
 namespace Drvtr\Yard;
 
-
 use Drvtr\Yard\Api\Tools\DumperInterface;
 use Drvtr\Yard\Api\Tools\LoggerPoolInterface;
 use Magento\Framework\App\ObjectManager;

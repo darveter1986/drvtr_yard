@@ -89,6 +89,13 @@ class Dumper implements DumperInterface
 
         if (is_object($content)) {
             $content = Dumpling::D($content, 2);
+
+            if ($content instanceof \DOMDocument) {
+                $dom = $content->getDom();
+                $dom->formatOutput = true;
+                $content = $dom->saveXML();
+            }
+
             return $content;
         }
 

@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
 
 
-    <route url="/V1/yard/test/productposition" method="POST">
+    <route url="/V1/yard/test/point" method="POST">
         <service class="Drvtr\Yard\Rest\Test\Command\ProductPositionTest" method="execute" />
         <resources>
             <resource ref="self" />
