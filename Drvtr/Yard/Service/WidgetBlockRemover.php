@@ -16,12 +16,12 @@ class WidgetBlockRemover
     /**
      * @var WidgetInstanceFactory
      */
-    private WidgetInstanceFactory $instanceFactory;
+    private $instanceFactory;
 
     /**
      * @var InstanceResourceModel
      */
-    private InstanceResourceModel $resourceModel;
+    private $resourceModel;
 
     /**
      * WidgetBlockRemover constructor.
