@@ -4,6 +4,7 @@
 namespace Drvtr\Yard\Tools;
 
 
+use DOMDocument;
 use Drvtr\Yard\ConfigInterface;
 use Drvtr\Yard\Api\Tools\DumperInterface;
 use Drvtr\Yard\Api\Tools\LoggerPoolInterface;
@@ -13,6 +14,7 @@ use FilesystemIterator;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
+use SimpleXMLElement;
 
 
 /**
@@ -88,12 +90,19 @@ class Dumper implements DumperInterface
         $ext = $pathParts['extension'] ?? null;
 
         if (is_object($content)) {
-            $content = Dumpling::D($content, 2);
-
-            if ($content instanceof \DOMDocument) {
-                $dom = $content->getDom();
+            if ($content instanceof SimpleXMLElement) {
+                $dom_sxe = dom_import_simplexml($content);
+                $dom = new DOMDocument('1.0');
+                $dom_sxe = $dom->importNode($dom_sxe, true);
+                $dom_sxe = $dom->appendChild($dom_sxe);
+                $content = $dom;
+            }
+            if ($content instanceof DOMDocument) {
+                $dom = $content;
                 $dom->formatOutput = true;
                 $content = $dom->saveXML();
+            } else {
+                $content = Dumpling::D($content, 2);
             }
 
             return $content;
